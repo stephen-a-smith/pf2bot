@@ -1,3 +1,9 @@
+#
+#
+# This is the driver for the Bot, all commands route to pf2.py which does the heavy-lifting. 
+# Tokens are not included in the git, for security.
+#
+#
 import discord
 from discord.ext import commands
 import random
@@ -7,10 +13,12 @@ import tokens
 
 bot = commands.Bot(command_prefix='!', description='used for DnD')
 
+# Prints to console confirmation that the bot has turned on
 @bot.event
 async def on_ready():
     print("ON")
 
+# Calls pf2 to print a trait, performs re.sub to remove the command from the message
 @bot.command(name="trait", description="Search for a trait\nUsage: !trait {trait_name}, it will find the first trait that matches your term")
 async def trait(ctx):
     try:
@@ -18,6 +26,7 @@ async def trait(ctx):
     except:
         await ctx.send("Error: Trait not found")
 
+# Calls pf2 to print a condition, performs re.sub to remove the command from the message
 @bot.command(name="condition", description="Search for a condition\nUsage: !condition {condition_name}, it will find the first condition that matches your term")
 async def condition(ctx):
     try:
@@ -25,6 +34,7 @@ async def condition(ctx):
     except:
         await ctx.send("Error, that condition was not found")
 
+# Calls pf2 to print a spell, performs re.sub to remove the command from the message
 @bot.command(name="spell", description="Search for a Spell\nUsage: !spell {spell_name}, it will find the first spell that matches your search term")
 async def spell(ctx):
     try:

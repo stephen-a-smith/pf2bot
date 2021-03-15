@@ -1,9 +1,6 @@
-import requests
-import json
-import queries
+import api
 
-URL = "https://us-central1-pf2-graphql.cloudfunctions.net/api/graphql"
-
+# formats the data into a neat format for reading
 def pretty_print(data):
     ret = ""
     for e in data.keys():
@@ -20,15 +17,9 @@ def pretty_print(data):
         ret += "**" + e.title() + "**:" + "\n\t" + str(data[e]) + "\n"
     return ret
 
-def get_spells():
-    request = requests.post(URL, json={'query': queries.Spells_query})
-    if request.status_code == 200:
-        return request.json()["data"]["spells"]
-    else:
-        print(request.status_code)
-
+# Finds requested spell, and returns the pretty_printed string
 def get_spell(s: str):
-    spells = get_spells()
+    spells = api.get_spells()
     spell = []
     for e in spells:
         if s.lower() in e["name"].lower():
@@ -36,22 +27,9 @@ def get_spell(s: str):
             break
     return pretty_print(spell)
 
-def get_conditions():
-    request = requests.post(URL, json={'query': queries.cond_query})
-    if request.status_code == 200:
-        return request.json()["data"]["conditions"]
-    else:
-        print(request.status_code)
-
-def get_traits():
-    request = requests.post(URL, json={'query': queries.trait_query})
-    if request.status_code == 200:
-        return request.json()["data"]["traits"]
-    else:
-        print(request.status_code)
-
+# Finds requested condition, and returns the pretty_printed string
 def get_condition(s: str):
-    conds = get_conditions()
+    conds = api.get_conditions()
     cond = []
     for e in conds:
         if s.lower() in e["name"].lower():
@@ -59,9 +37,9 @@ def get_condition(s: str):
             break
     return pretty_print(cond)
 
-
+# Finds requested trait, and returns the pretty_printed string
 def get_trait(s: str):
-    traits = get_traits()
+    traits = api.get_traits()
     trait = []
     for e in traits:
         if s.lower() in e["name"].lower():
