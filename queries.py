@@ -1,3 +1,35 @@
+archFeats_query = """
+{
+  archfeats{
+    name
+    traits {
+      name
+    }
+  	text
+    frequency
+    failure
+    success
+    criticalsuccess
+  }
+}
+"""
+
+feats_query = """
+{
+  feats{
+    name
+    traits {
+      name
+    }
+  	text
+    frequency
+    failure
+    success
+    criticalsuccess
+  }
+}
+"""
+
 conditions_query = """
 {
   conditions{

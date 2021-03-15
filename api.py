@@ -29,3 +29,17 @@ def get_traits():
         return request.json()["data"]["traits"]
     else:
         print(request.status_code)
+
+def get_feats():
+    request = requests.post(URL, json={'query': queries.feats_query})
+    if request.status_code == 200:
+        return request.json()["data"]["feats"]
+    else:
+        print(request.status_code)
+
+def get_archFeats():
+    request = requests.post(URL, json={'query': queries.archFeats_query})
+    if request.status_code == 200:
+        return request.json()["data"]["archfeats"]
+    else:
+        print(request.status_code)

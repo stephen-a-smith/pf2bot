@@ -3,6 +3,8 @@ import api
 conds = api.get_conditions()
 spells = api.get_spells()
 traits = api.get_traits()
+feats = api.get_feats() + api.get_archFeats()
+
 
 # formats the data into a neat format for reading
 def pretty_print(data):
@@ -16,37 +18,16 @@ def pretty_print(data):
               for x in data[e]:
                 li.append(x["name"])
               data[e] = li
-            ret += "**" + e.title() + "**:" + "\n\t" + "\n\t".join(data[e]) + "\n"
+            ret += "" + e.title() + ":" + "\n\t" + "\n\t".join(data[e]) + "\n"
             continue
-        ret += "**" + e.title() + "**:" + "\n\t" + str(data[e]) + "\n"
+        ret += "" + e.title() + ":" + "\n\t" + str(data[e]) + "\n"
     return ret
 
-# Finds requested spell, and returns the pretty_printed string
-def get_spell(s: str):
-    spell = []
-    for e in spells:
+# Finds requested trait
+def get(s: str, data):
+    target = []
+    for e in data:
         if s.lower() in e["name"].lower():
-            spell = e
+            target = e
             break
-    return pretty_print(spell)
-
-# Finds requested condition, and returns the pretty_printed string
-def get_condition(s: str):
-    cond = []
-    for e in conds:
-        if s.lower() in e["name"].lower():
-            cond = e
-            break
-    return pretty_print(cond)
-
-# Finds requested trait, and returns the pretty_printed string
-def get_trait(s: str):
-    trait = []
-    for e in traits:
-        if s.lower() in e["name"].lower():
-            trait = e
-            break
-    return pretty_print(trait)
-
-
-
+    return pretty_print(target)
