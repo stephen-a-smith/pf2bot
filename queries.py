@@ -1,4 +1,4 @@
-cond_query = """
+conditions_query = """
 {
   conditions{
 		name
@@ -18,7 +18,7 @@ trait_query = """
 }
 """
 
-Spells_query = """
+spells_query = """
 {
   spells{
     name
