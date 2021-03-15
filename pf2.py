@@ -1,5 +1,9 @@
 import api
 
+conds = api.get_conditions()
+spells = api.get_spells()
+traits = api.get_traits()
+
 # formats the data into a neat format for reading
 def pretty_print(data):
     ret = ""
@@ -19,7 +23,6 @@ def pretty_print(data):
 
 # Finds requested spell, and returns the pretty_printed string
 def get_spell(s: str):
-    spells = api.get_spells()
     spell = []
     for e in spells:
         if s.lower() in e["name"].lower():
@@ -29,7 +32,6 @@ def get_spell(s: str):
 
 # Finds requested condition, and returns the pretty_printed string
 def get_condition(s: str):
-    conds = api.get_conditions()
     cond = []
     for e in conds:
         if s.lower() in e["name"].lower():
@@ -39,7 +41,6 @@ def get_condition(s: str):
 
 # Finds requested trait, and returns the pretty_printed string
 def get_trait(s: str):
-    traits = api.get_traits()
     trait = []
     for e in traits:
         if s.lower() in e["name"].lower():

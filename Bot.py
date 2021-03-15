@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='!', description='A simple bot for PF2')
 # Prints to console confirmation that the bot has turned on
 @bot.event
 async def on_ready():
-    print("ON")
+    print("Bot started.")
 
 bot.load_extension('pf2Cog')
 bot.run(tokens.bot_token)
